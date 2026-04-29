@@ -1,0 +1,38 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: miniblog-backend
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/miniblog?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.miniblog.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+
+jwt:
+  secret: miniblog-jwt-secret-key-2026-do-not-share-this-secret-key
+  expiration: 604800000
+
+upload:
+  path: D:/project/博客项目app/miniblog-backend/uploads
+  base-url: http://localhost:9090/api/uploads
